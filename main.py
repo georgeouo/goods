@@ -1,0 +1,30 @@
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+import time
+from selenium.webdriver.chrome.options import Options
+chrome_options = Options()
+chrome_options.page_load_strategy = 'none'
+driver = webdriver.Chrome(chrome_options=chrome_options)
+driver.maximize_window()
+driver.get('https://24h.pchome.com.tw/prod/DBAY13-A9008620V')
+time.sleep(1)
+driver.find_element_by_xpath('//*[@id="ButtonContainer"]/button').click()
+time.sleep(0.5)
+driver.find_element_by_xpath('//*[@id="Servicecontainer")/li[1]/a').click()
+time.sleep(1)
+driver.find_element_by_xpath('//*[@id="loginAcc"]').send_keys("自己的帳號")
+driver.find_element_by_xpath('//*[@id="loginPwd"]').send_keys('自己的密碼')
+driver.find_element_by_xpath('//*[@id="btnLogin"]').click()
+time.sleep(5)
+driver.find_element_by_id("a_cod").click()
+time.sleep(1)
+driver.find_element_by_xpath('//*[@id="BuyerName"]').send_keys('自己的名字')
+driver.find_element_by_xpath('//*[@id="BuyerMobile"]').send_keys("自己的電話")
+select = Select(driver.find_element_by_xpath('//*[@id="BuyerAddrcity"]'))
+select.select_by_index(4)
+select = Select(driver.find_element_by_xpath('//*[@id="BuyerAddrRegion"J'))
+select.select_by_index(7)
+driver.find_element_by_xpath('//*[@id="BuyerAddr"]').send_keys('自己的地址')
+driver.find_element_by_xpath('//*[@id="frmUserInfo"]/dl[4]/dd[2]/div[1]/div[2]/label').click()
+driver.find_element_by_xpath('//*[@id="syncData"]').click()
+driver.find_element_by_xpath('//*[@id="chk_agree"]').click()
